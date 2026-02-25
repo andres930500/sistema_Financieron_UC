@@ -1,230 +1,87 @@
-# 💰 Sistema Financiero Ucaldas – Frontend
+# SAPFIAI - Sistema Financiero (Frontend)
 
-![React](https://img.shields.io/badge/React-18.x-61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6)
-![Vite](https://img.shields.io/badge/Vite-5.x-646CFF)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=react&logoColor=white)
 
----
+## 📋 Descripción Profesional
 
-## 📋 Descripción
+**SAPFIAI** es la interfaz moderna del Sistema Financiero de la Universidad de Caldas. Se trata de una Single Page Application (SPA) de alto rendimiento diseñada bajo el paradigma de **Feature-Driven Architecture**, garantizando un código escalable, mantenible y desacoplado.
 
-El **Sistema Financiero Ucaldas – Frontend** es una aplicación SPA desarrollada con **React + TypeScript + Vite**, diseñada para consumir una API construida con **ASP.NET Core 8 bajo Clean Architecture**.
-
-El proyecto sigue principios modernos de desarrollo frontend:
-
-- Arquitectura modular por features  
-- Separación de responsabilidades  
-- Tipado estricto con TypeScript  
-- Escalabilidad y mantenibilidad  
-- Buenas prácticas de desarrollo  
-
-Actualmente el proyecto está desplegado en **Vercel** para entorno de producción.
+Esta UI ha sido optimizada para consumir servicios robustos en **.NET 8 Core**, implementando patrones de seguridad avanzados y una experiencia de usuario (UX) fluida.
 
 ---
 
-## 🌍 Demo en Producción
+## 🏗️ Arquitectura y Buenas Prácticas
 
-```
-https://sistema-financiero-ucaldas-frontend.vercel.app
-```
+El proyecto no es una simple carpeta de componentes; sigue una estructura de **Arquitectura Limpia** adaptada al ecosistema Frontend:
 
----
-
-## ✨ Características
-
-- ⚛️ Arquitectura modular por funcionalidades  
-- 🔐 Sistema de autenticación con protección de rutas  
-- 📊 Dashboard financiero interactivo  
-- 🌐 Consumo de API REST (.NET 8 Backend)  
-- 🧩 Componentes reutilizables  
-- 🧠 Tipado fuerte con TypeScript  
-- 🔎 ESLint configurado  
-- 🚀 Optimización con Vite  
-- ☁️ Despliegue automático en Vercel  
+* **Feature-Driven Design:** Cada dominio de negocio (Auth, Dashboard, Reportes) tiene su propia lógica, componentes y servicios aislados.
+* **Separación de Responsabilidades:**
+    * `@shared`: Componentes de UI "tontos" (Atómicos) sin lógica de negocio.
+    * `@features`: Componentes "inteligentes" que gestionan datos y eventos.
+* **State Management Eficiente:** Uso de **Zustand** para un estado global ligero, evitando el prop-drilling y sobrecarga de re-renders.
+* **Tipado Estricto:** Implementación de interfaces exhaustivas para asegurar contratos de datos con el Backend.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología | Uso |
-|------------|------|
-| React 18 | Librería de UI |
-| TypeScript 5 | Tipado estático |
-| Vite 5 | Bundler y Dev Server |
-| React Router | Manejo de rutas |
-| Axios / Fetch | Consumo de API |
-| ESLint | Calidad de código |
-| Vercel | Hosting y despliegue |
+| Herramienta | Función |
+| :--- | :--- |
+| **React 18** | Biblioteca base para la UI |
+| **TypeScript** | Superconjunto de JS para desarrollo robusto |
+| **Vite** | Bundler de última generación para carga instantánea |
+| **Zustand** | Gestión de estado global (Auth, UI State) |
+| **Tailwind CSS** | Estilizado basado en utilidades y Responsive Design |
+| **React Router 6** | Manejo de navegación y rutas protegidas (RBAC) |
+| **Axios** | Cliente HTTP con interceptores para tokens JWT |
 
 ---
 
-## 🏗️ Estructura del Proyecto
+## 📁 Estructura del Proyecto (Alias configurados)
 
-```
-SistemaFinancieroUcaldas_Frontend/
-├── src/
-│   ├── core/               # Configuración global, providers y rutas
-│   ├── features/
-│   │   ├── auth/           # Login y manejo de sesión
-│   │   └── dashboard/      # Vista principal financiera
-│   ├── components/         # Componentes reutilizables
-│   ├── services/           # Comunicación con API
-│   ├── types/              # Interfaces y tipos TypeScript
-│   └── App.tsx
-├── public/
-└── vite.config.ts
-```
+Para evitar rutas relativas complejas (`../../`), el proyecto utiliza alias de ruta:
 
----
+```text
+src/
+├── core/               # Providers, configuración de Axios y Router
+├── features/           # Módulos por dominio de negocio (Lógica Smart)
+│   ├── auth/           # Login, Recuperación, Registro
+│   └── dashboard/      # Métricas y vistas financieras
+├── shared/             # UI Kit y utilidades universales (Lógica Dumb)
+│   ├── components/     # Botones, Inputs, Cards reutilizables
+│   ├── hooks/          # Custom hooks genéricos
+│   └── types/          # Definiciones de tipos globales
+├── store/              # Stores de Zustand (Global State)
+└── assets/             # Recursos estáticos (Imágenes, SVG)
 
-## 🔐 Módulo de Autenticación
+Instalación y Desarrollo
+Clonar el repositorio:
 
-- Formulario de login  
-- Validaciones de campos  
-- Manejo de token JWT  
-- Protección de rutas privadas  
-- Interceptores para requests autenticadas  
+Bash
+git clone [https://github.com/TU_USUARIO/SistemaFinancieroUcaldas_Frontend.git](https://github.com/TU_USUARIO/SistemaFinancieroUcaldas_Frontend.git)
+Instalar dependencias:
 
----
-
-## 📊 Módulo Dashboard
-
-- Visualización de métricas financieras  
-- Integración con endpoints protegidos  
-- Componentes preparados para gráficos  
-- Estructura escalable para reportes y estadísticas  
-
----
-
-## 🚀 Instalación y Ejecución Local
-
-### 1️⃣ Clonar el repositorio
-
-```bash
-git clone https://github.com/Danielgiraldo2010/SistemaFinancieroUcaldas_Frontend.git
-```
-
-### 2️⃣ Entrar al proyecto
-
-```bash
-cd SistemaFinancieroUcaldas_Frontend
-```
-
-### 3️⃣ Instalar dependencias
-
-```bash
+Bash
 npm install
-```
+Configurar Variables de Entorno:
+Crea un archivo .env en la raíz con la URL de la API:
 
-### 4️⃣ Ejecutar en desarrollo
+Fragmento de código
+VITE_API_BASE_URL=[https://api.tusistema.com](https://api.tusistema.com)
+Lanzar entorno de desarrollo:
 
-```bash
+Bash
 npm run dev
-```
+🔐 Seguridad e Integración
+Route Guarding: Implementación de un componente PrivateRoute que verifica la persistencia del estado en el useAuthStore antes de permitir el acceso.
 
-Aplicación disponible en:
+Interceptores HTTP: Cada petición saliente adjunta automáticamente el Bearer Token si el usuario está autenticado.
 
-```
-http://localhost:5173
-```
+Clean Architecture (Backend): Diseñado para trabajar en conjunto con APIs de .NET Core siguiendo patrones CQRS y MediatR.
 
----
-
-## ⚙️ Variables de Entorno
-
-Crear un archivo `.env` en la raíz del proyecto:
-
-```
-VITE_API_BASE_URL=https://localhost:5001/api
-```
-
-En producción (Vercel), configurar la variable desde:
-
-```
-Project Settings → Environment Variables
-```
-
-Acceso desde el código:
-
-```ts
-import.meta.env.VITE_API_BASE_URL
-```
-
----
-
-## ☁️ Despliegue en Vercel
-
-El proyecto está configurado para despliegue automático conectado al repositorio de GitHub.
-
-Configuración utilizada:
-
-- Framework: Vite  
-- Build Command:
-
-```bash
-npm run build
-```
-
-- Output Directory:
-
-```
-dist
-```
-
-Cada push a la rama `main` genera un nuevo despliegue automático en Vercel.
-
----
-
-## 🌿 Estrategia de Ramas
-
-- `main` → Rama estable  
-- `feat/login` → Desarrollo del módulo de autenticación  
-- `feat/dashboard` → Desarrollo del dashboard financiero  
-
-Cada funcionalidad se desarrolla en ramas independientes y se integra mediante Pull Request.
-
----
-
-## 🔄 Integración con Backend
-
-El frontend está diseñado para integrarse con un backend desarrollado bajo:
-
-- ASP.NET Core 8  
-- Clean Architecture  
-- Entity Framework Core  
-- CQRS + MediatR  
-- Endpoints protegidos con autenticación  
-
-Se mantiene una separación clara entre:
-
-- UI  
-- Lógica de presentación  
-- Servicios de infraestructura (API)  
-
----
-
-## 📦 Build para Producción
-
-```bash
-npm run build
-```
-
-Se genera la carpeta:
-
-```
-/dist
-```
-
-Para previsualizar el build:
-
-```bash
-npm run preview
-```
-
----
-
-## 📄 Licencia
-
-Proyecto bajo licencia MIT.
+📄 Licencia
+Este proyecto está bajo la Licencia MIT.
